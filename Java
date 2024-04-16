@@ -1,0 +1,38 @@
+// Function to render the game
+function renderGame() {
+    // Drawing plasma-sabers on the canvas
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Draw plasma-sabers
+    drawPlasmaSaber(ctx, 50, 50, 'blue');
+    drawPlasmaSaber(ctx, 200, 200, 'red');
+    
+    // Check for collisions between plasma-sabers
+    if (checkCollision(50, 50, 100, 10, 200, 200, 100, 10)) {
+        handleCollision();
+    }
+}
+
+// Function to draw a plasma-saber
+function drawPlasmaSaber(ctx, x, y, color) {
+    // Drawing a plasma-saber
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, 100, 10); // Plasma-saber blade
+    ctx.fillRect(x + 40, y - 20, 20, 50); // Plasma-saber handle
+}
+
+// Function to check collision between two rectangles
+function checkCollision(x1, y1, w1, h1, x2, y2, w2, h2) {
+    return x1 < x2 + w2 && x1 + w1 > x2 && y1 < y2 + h2 && y1 + h1 > y2;
+}
+
+// Function to handle collisions between plasma-sabers
+function handleCollision() {
+    // Handling collisions between plasma-sabers
+    console.log('Plasma-sabers collided');
+}
+
+// Call the renderGame function to render the game graphics
+renderGame();
